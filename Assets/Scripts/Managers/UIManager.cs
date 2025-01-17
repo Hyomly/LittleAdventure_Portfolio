@@ -106,6 +106,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
         }
     }
     #endregion [Mathods]
+
     protected override void OnStart()
     {
         m_completePanel.SetActive(false);
