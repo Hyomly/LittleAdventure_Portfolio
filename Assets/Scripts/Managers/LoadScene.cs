@@ -11,6 +11,7 @@ public enum SceneState
 {
     None = -1,
     Title,
+    SelectStage,
     Game
 }
 public class LoadScene : SingletonDontDestroy<LoadScene>
@@ -50,8 +51,6 @@ public class LoadScene : SingletonDontDestroy<LoadScene>
     }
     private void Update()
     {
-        
-        
         if (m_loadingState != null)
         {
             if(m_loadingState.isDone)

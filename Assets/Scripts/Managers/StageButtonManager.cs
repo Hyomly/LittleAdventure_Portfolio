@@ -12,6 +12,7 @@ public class StageButtonManager : MonoBehaviour
     int m_stageNum = 0;
 
     List<GameObject> m_stageButtons = new List<GameObject>();   
+   
 
     void CreateButton()
     {
@@ -20,8 +21,8 @@ public class StageButtonManager : MonoBehaviour
         obj.GetComponent<Button>().interactable = false;
         StageButtonCtrl stageText = obj.GetComponent<StageButtonCtrl>();
         m_stageNum++;
-        stageText.StageInfo = m_stageNum + "";
-        m_stageButtons.Add(obj);
+        stageText.StageNum = m_stageNum;
+        m_stageButtons.Add( obj);
     }
     public void ButtonActivate(int idx,bool isActivte)
     {

@@ -498,7 +498,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7836363628316083153}
   m_Layer: 3
-  m_Name: Spawns
+  m_Name: Dummy_Spawn
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

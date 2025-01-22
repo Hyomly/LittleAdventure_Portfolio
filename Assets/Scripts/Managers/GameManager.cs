@@ -6,6 +6,8 @@ using UnityEngine;
 public class GameManager : SingletonMonobehaviour<GameManager>
 {
     #region [Constants and Fields]
+    [SerializeField]
+    GameObject m_player;
 
     [SerializeField]
     float m_time = 180f;
@@ -20,10 +22,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     bool m_mission3 = false;
 
 
-    List<BattleAreaCtrl> m_battleAreas = new List<BattleAreaCtrl>();
     #endregion [Constants and Fields]
-
-
 
     #region [Public Mathods]
     public void PulsCoin()
@@ -45,7 +44,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     public void CurStage(int stage)
     {
         m_curStage = stage;
-        UIManager.Instance.ShowMission(stage);
     }
     public void IsOver(bool isOver)
     {
@@ -86,6 +84,11 @@ public class GameManager : SingletonMonobehaviour<GameManager>
             m_mission3 = true;
         }
     }
+    void SettingPlayer()
+    {
+        m_player.transform.position = Vector3.zero;
+    }
+
     IEnumerator CoTimer()
     {
         while (m_curTime > 0)
@@ -104,14 +107,22 @@ public class GameManager : SingletonMonobehaviour<GameManager>
             }
         }
     }
-
-
     #endregion [Mathods]
-    // Start is called before the first frame update
+
+    #region [Unity Mathods]
+    protected override void OnAwake()
+    {
+        CurStage(StageManager.Instance.m_selectStage);
+        StageManager.Instance.SettingMap(m_curStage);
+            
+    }
     protected override void OnStart()
     {
+        SettingPlayer();
         SetTime();
-        CurStage(1);
-    }
+        UIManager.Instance.ShowMission(m_curStage);
 
+        UIManager.Instance.ShowStageInfo(m_curStage);
+    }
+    #endregion [Unity Mathods]
 }

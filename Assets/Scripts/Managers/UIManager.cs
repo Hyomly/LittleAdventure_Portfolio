@@ -7,9 +7,10 @@ using UnityEngine.UI;
 
 public class UIManager : SingletonMonobehaviour<UIManager>
 {
-    
-    #region [Constants and Fields]
 
+    #region [Constants and Fields]
+    [SerializeField]
+    TMP_Text m_stageInfoText;
     [SerializeField]
     TMP_Text m_timerText;
     [SerializeField]
@@ -40,7 +41,11 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         m_coinCountText.text = coinCount.ToString();
     }
-       
+    public void ShowStageInfo(int stageNum)
+    {
+        var num = stageNum.ToString();
+        m_stageInfoText.text = "STAGE" + num;
+    }
     public void ShowMission(int stage)
     {
         var missionData = MissionTable.Instance.GetMissionData(stage);
@@ -90,9 +95,9 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         LoadScene.Instance.LoadSceneAsync(SceneState.Game);
     }
-    public void GoTitleScene()
+    public void GoSelectScene()
     {
-        LoadScene.Instance.LoadSceneAsync(SceneState.Title);
+        LoadScene.Instance.LoadSceneAsync(SceneState.SelectStage);
     }
 
     #endregion [Public Mathods]

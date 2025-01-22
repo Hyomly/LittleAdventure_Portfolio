@@ -23,8 +23,4 @@ public class BattleAreaCtrl : MonoBehaviour
     {
         m_clearBettleArea = isClear;
     }
-   
-    
-    
-    
 }
