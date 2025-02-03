@@ -37,9 +37,13 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         m_timerText.text = minute.ToString("00") + ":" + second.ToString("00");
     }
-    public void ShowCoins( int coinCount)
+    public void ShowCoins( int coinCount )
     {
         m_coinCountText.text = coinCount.ToString();
+    }
+    public void HudCoinCount()
+    {
+        
     }
     public void ShowStageInfo(int stageNum)
     {

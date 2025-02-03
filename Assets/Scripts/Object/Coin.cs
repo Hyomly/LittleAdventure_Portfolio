@@ -9,7 +9,7 @@ public class Coin : MonoBehaviour
         if(other.CompareTag("Player"))
         {
             ItemManager.Instance.RemoveCoin(this);
-            GameManager.Instance.PulsCoin();
+            GameManager.Instance.GainCoin();
         }
     }
     public void Drop(Vector3 from)

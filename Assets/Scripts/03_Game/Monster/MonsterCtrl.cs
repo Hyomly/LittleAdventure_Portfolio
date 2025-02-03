@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.SqlTypes;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -22,14 +23,14 @@ public class MonsterCtrl : MonoBehaviour
     }
 
     [SerializeField]
-    PlayerCtrl m_player;
+    protected PlayerCtrl m_player;
     [SerializeField]
-    HUD_Ctrl m_hud;
+    protected HUD_Hp m_hudHp;
     [SerializeField]
-    MonsterAniCtrl m_monAniCtrl;
+    protected MonsterAniCtrl m_monAniCtrl;
     NavMeshAgent m_navAgent;
-    MoveTween m_moveTween;
-    Mon_AttackArea_UnitFind m_attackArea;
+    protected MoveTween m_moveTween;
+    protected Mon_AttackArea_UnitFind m_attackArea;
 
     [Space(10f)]
     [SerializeField, Header("[ Ai 상태 정보 ]")]
@@ -43,7 +44,7 @@ public class MonsterCtrl : MonoBehaviour
 
     [Space(10f)]
     [SerializeField,Header("[ 몬스터 능력치 ]")]
-    Status m_status;
+    protected Status m_status;
     bool m_isDie = false;
 
     
@@ -62,17 +63,16 @@ public class MonsterCtrl : MonoBehaviour
     {
         SetIdle(0.1f);
     }
-    void AnimEvent_AttackFinished()
+    protected virtual void AnimEvent_AttackFinished()
     {
         SetIdle(1f);
     }
-    void AnimEvent_Attack()
+    protected virtual void AnimEvent_Attack()
     {
         if (m_attackArea.IsPlayer)
         {
             m_player.SetDamage(10f);            
         }
-
     }
 
     #endregion [Animation Event Methos]
@@ -87,20 +87,20 @@ public class MonsterCtrl : MonoBehaviour
         SetState(AIState.Idle);
         m_monAniCtrl.Play(MonsterAniCtrl.Motion.Idle);
         m_status.hp = m_status.hpMax;
-        m_hud.HpBarInit(m_status.hpMax);
+        m_hudHp.HpBarInit(m_status.hpMax);
         
     }   
     public void IsDie(bool isDie)
     {
         m_isDie=isDie;
     }
-    public void SetDamage(float damage)
+    public virtual void SetDamage(float damage)
     {
         if (!m_isDie)
         {
             // Hp Down
             m_status.hp -= Mathf.RoundToInt(damage);
-            m_hud.IsDamage(true, m_status.hp);
+            m_hudHp.IsDamage(true, m_status.hp);
             SetState(AIState.Damage);
             m_monAniCtrl.Play(MonsterAniCtrl.Motion.Damage);
 
@@ -123,14 +123,14 @@ public class MonsterCtrl : MonoBehaviour
     #endregion [Public Methods]
 
     #region [Methods]
-    void SetDie()
+    protected virtual void SetDie()
     {
-        m_isDie = true;
+        IsDie(true);
         Vector3 deathPos = transform.position;
         deathPos.y += 0.3f;
         ItemManager.Instance.CreateCoin(deathPos);
         MonsterManager.Instance.RemoveMonster(this);
-        m_hud.HideBar();
+        m_hudHp.HideBar();
         
     }
 
@@ -144,7 +144,7 @@ public class MonsterCtrl : MonoBehaviour
         return false;
     }
     
-    void SetState(AIState state)
+    protected void SetState(AIState state)
     {
         m_state = state;
     }
@@ -218,17 +218,17 @@ public class MonsterCtrl : MonoBehaviour
 
     #region [Unity Methods]    
 
-    void Start()
+    protected virtual void Start()
     {
         m_monAniCtrl = GetComponent<MonsterAniCtrl>();
         m_navAgent = GetComponent<NavMeshAgent>();
         m_moveTween = GetComponent<MoveTween>();
         m_attackArea = GetComponentInChildren<Mon_AttackArea_UnitFind>();
-        m_hud = GetComponent<HUD_Ctrl>();
+        m_hudHp = GetComponentInChildren<HUD_Hp>();
         InitMonster();
     }
 
-    void Update()
+    protected virtual void Update()
     {
         BehaviorProcess();
     }

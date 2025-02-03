@@ -8,7 +8,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     #region [Constants and Fields]
     [SerializeField]
     GameObject m_player;
-
+    HUD_Coin m_hudCoin;
     [SerializeField]
     float m_time = 180f;
     float m_curTime;
@@ -25,11 +25,14 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     #endregion [Constants and Fields]
 
     #region [Public Mathods]
-    public void PulsCoin()
+    public void GainCoin()
     {
         m_stageCoins++;
+        m_hudCoin.CountCoin();
         UIManager.Instance.ShowCoins(m_stageCoins);
     }
+    
+    
     public void StartTimer()
     {
         StartCoroutine(CoTimer());
@@ -114,15 +117,15 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         CurStage(StageManager.Instance.m_selectStage);
         StageManager.Instance.SettingMap(m_curStage);
-            
+             
     }
     protected override void OnStart()
     {
         SettingPlayer();
         SetTime();
         UIManager.Instance.ShowMission(m_curStage);
-
         UIManager.Instance.ShowStageInfo(m_curStage);
+        m_hudCoin = m_player.GetComponentInChildren<HUD_Coin>();
     }
     #endregion [Unity Mathods]
 }

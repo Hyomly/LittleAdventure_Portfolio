@@ -12,7 +12,7 @@ public class PlayerCtrl : MonoBehaviour
     PlayerAniCtrl m_animCtrl;
     SkillCtrl m_skillCtrl;
     [SerializeField]
-    HUD_Ctrl m_hud;
+    HUD_Hp m_hudHp;
     AttackAreaUnitFind[] m_attackAreas;    
     [SerializeField]
     GameObject m_attackAreaObj;
@@ -114,8 +114,8 @@ public class PlayerCtrl : MonoBehaviour
     public void SetDamage(float damage)
     {
         // Hp Down
-        m_status.hp -= Mathf.RoundToInt(damage);        
-        m_hud.IsDamage(true, m_status.hp);
+        m_status.hp -= Mathf.RoundToInt(damage);
+        m_hudHp.IsDamage(true, m_status.hp);
         if( m_status.hp != m_status.hpMax )
         {
             GameManager.Instance.IsDamaged();
@@ -252,11 +252,10 @@ public class PlayerCtrl : MonoBehaviour
     void Start()
     {
         m_animCtrl = GetComponent<PlayerAniCtrl>();
-        m_skillCtrl = GetComponent<SkillCtrl>();
-        m_hud = GetComponent<HUD_Ctrl>();
+        m_skillCtrl = GetComponent<SkillCtrl>();       
         m_attackAreas = m_attackAreaObj.GetComponentsInChildren<AttackAreaUnitFind>();        
         hash_Move = Animator.StringToHash("IsMove");
-        m_hud.HpBarInit(m_status.hpMax);
+        m_hudHp.HpBarInit(m_status.hpMax);
     }
 
     void Update()

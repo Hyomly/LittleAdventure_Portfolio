@@ -28,7 +28,7 @@ public class BattleAreaManager : SingletonMonobehaviour<BattleAreaManager>
     public void StartBattle()
     {
         CreateBattleWall(m_currentIdx);
-        Dummy_Spawn = StageManager.Instance.m_battleArea[m_currentIdx].transform.FindChild("Dummy_Spawn").transform;
+        Dummy_Spawn = StageManager.Instance.m_battleArea[m_currentIdx].transform.Find("Dummy_Spawn").transform;
         m_spawnPos = Dummy_Spawn.GetComponentsInChildren<Transform>();
         MonsterManager.Instance.CreateMonster(m_spawnPos);
     }
