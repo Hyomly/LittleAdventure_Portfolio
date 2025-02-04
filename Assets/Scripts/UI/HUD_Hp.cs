@@ -15,10 +15,10 @@ public class HUD_Hp : MonoBehaviour
     [SerializeField]
     Slider m_backHpBar;
     [SerializeField]
- 
+
     bool m_isDamage = false;
     float m_currentHp;
-    
+
 
     #endregion [Constants and Fields]
 
@@ -27,12 +27,11 @@ public class HUD_Hp : MonoBehaviour
     {
         m_isDamage = isDamage;
         m_currentHp = currentHp;
-        
     }
     public void HpBarInit(float maxHp)
     {
-        m_isDamage = false ;
-        m_frontHpBar.maxValue = maxHp;        
+        m_isDamage = false;
+        m_frontHpBar.maxValue = maxHp;
         m_frontHpBar.value = maxHp;
         m_backHpBar.maxValue = maxHp;
         m_backHpBar.value = maxHp;
@@ -40,15 +39,11 @@ public class HUD_Hp : MonoBehaviour
     }
     public void UpdateHpBar()
     {
-        if(gameObject.CompareTag("Monster"))
-        {
-            ShowBar();
-        }
-        m_frontHpBar.value = Mathf.Lerp(m_frontHpBar.value, m_currentHp , Time.deltaTime * 10f );
-       
+        m_frontHpBar.value = Mathf.Lerp(m_frontHpBar.value, m_currentHp, Time.deltaTime * 10f);
+
         Invoke("BackHpBar_Update", 1.5f);
         m_hpText.text = (m_currentHp).ToString();
-        if( m_backHpBar.value <= m_frontHpBar.value + 0.1f)
+        if (m_backHpBar.value <= m_frontHpBar.value + 0.1f)
         {
             CancelInvoke();
             m_backHpBar.value = m_frontHpBar.value;
@@ -70,15 +65,13 @@ public class HUD_Hp : MonoBehaviour
     {
         gameObject.SetActive(true);
     }
-    
-   
     #endregion[Mathods]
 
 
     #region[Unity Mathods]
     private void Awake()
     {
-        if(gameObject.CompareTag("Player"))
+        if (gameObject.CompareTag("Player"))
         {
             ShowBar();
         }
@@ -86,11 +79,11 @@ public class HUD_Hp : MonoBehaviour
         {
             HideBar();
         }
-   
+
     }
     void Update()
     {
-        if(m_isDamage)
+        if (m_isDamage)
         {
             UpdateHpBar();
         }

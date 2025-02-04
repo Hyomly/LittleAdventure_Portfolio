@@ -50,8 +50,6 @@ public class MonsterManager : SingletonMonobehaviour<MonsterManager>
             mon.InstancePlayer(m_player);
             return mon;
         });
-        
-        
     }
 
    

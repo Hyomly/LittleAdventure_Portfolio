@@ -16,6 +16,8 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     [SerializeField]
     TMP_Text m_coinCountText;
     [SerializeField]
+    TMP_Text m_stopPanelText;
+    [SerializeField]
     TMP_Text[] m_startMissions;
     [SerializeField]
     TMP_Text[] m_endMissions;
@@ -27,6 +29,8 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     GameObject m_completePanel;
     [SerializeField]
     GameObject m_gameOverPanel;
+    [SerializeField]
+    GameObject m_stopGamePanel;
 
     Dictionary<Motion, Slider> m_skillTimers = new Dictionary<Motion, Slider>();
 
@@ -40,15 +44,12 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     public void ShowCoins( int coinCount )
     {
         m_coinCountText.text = coinCount.ToString();
-    }
-    public void HudCoinCount()
-    {
-        
-    }
+    } 
     public void ShowStageInfo(int stageNum)
     {
         var num = stageNum.ToString();
         m_stageInfoText.text = "STAGE" + num;
+        m_stopPanelText.text = "STAGE" + num;
     }
     public void ShowMission(int stage)
     {
@@ -59,6 +60,9 @@ public class UIManager : SingletonMonobehaviour<UIManager>
             m_endMissions[i].text = missionData.Mission[i].ToString();
         }
     }
+
+    //------------------------------------------------------------------
+
     public void InitSlider(Motion skill,float coolTime )
     {
         m_skillTimers[skill].maxValue = coolTime;
@@ -72,6 +76,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
             m_skillTimers[skill].value = 0f;
         }
     }
+    //----------------------------------------------------------------
     public void ShowCompletePanel()
     {
         m_completePanel.SetActive(true);
@@ -95,15 +100,24 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         m_gameOverPanel.SetActive(true);
     }
+    public void StopGame()
+    {
+        GameManager.Instance.StopTimer();
+        m_stopGamePanel.SetActive(true);
+    }
     public void OnRestart()
     {
         LoadScene.Instance.LoadSceneAsync(SceneState.Game);
     }
-    public void GoSelectScene()
+    public void ReturnBack()
     {
         LoadScene.Instance.LoadSceneAsync(SceneState.SelectStage);
     }
-
+    public void CountinueGame()
+    {
+        m_stopGamePanel.SetActive(false);
+        GameManager.Instance.StartTimer();
+    }
     #endregion [Public Mathods]
 
     #region [Mathods]
@@ -120,6 +134,7 @@ public class UIManager : SingletonMonobehaviour<UIManager>
     {
         m_completePanel.SetActive(false);
         m_gameOverPanel.SetActive(false);
+        m_stopGamePanel.SetActive(false);
         int skillNum = 0;
         for (int i = (int)Motion.Desh; i <= (int)Motion.Skill2; i++)
         {

@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEditor.Playables;
 using UnityEngine;
 
 public class StageManager : SingletonDontDestroy<StageManager>
 {
-   
+
+    NavMeshSurface m_navMesh;
     [SerializeField]
     List<GameObject> m_stages = new List<GameObject>();
     [SerializeField]
@@ -23,6 +25,7 @@ public class StageManager : SingletonDontDestroy<StageManager>
     {
         var stage = Instantiate(m_stages[stageIdx - 1]);
         stage.transform.position = Vector3.zero;
+        m_navMesh.BuildNavMesh();
         var battleArea = Instantiate(m_battleAreas[stageIdx - 1]);
         battleArea.transform.position = Vector3.zero;
         var area = battleArea.GetComponentsInChildren<BattleAreaCtrl>();
@@ -48,6 +51,7 @@ public class StageManager : SingletonDontDestroy<StageManager>
     private void Start()
     {
         LoadStage();
+        m_navMesh = GetComponentInChildren<NavMeshSurface>();
     }
     
 }

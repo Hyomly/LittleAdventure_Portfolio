@@ -31,11 +31,13 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         m_hudCoin.CountCoin();
         UIManager.Instance.ShowCoins(m_stageCoins);
     }
-    
-    
     public void StartTimer()
     {
         StartCoroutine(CoTimer());
+    }
+    public void StopTimer()
+    {
+        StopCoroutine(CoTimer());
     }
     public void SetTime()
     {
@@ -126,6 +128,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         UIManager.Instance.ShowMission(m_curStage);
         UIManager.Instance.ShowStageInfo(m_curStage);
         m_hudCoin = m_player.GetComponentInChildren<HUD_Coin>();
+        m_hudCoin.gameObject.SetActive(false);
     }
     #endregion [Unity Mathods]
 }

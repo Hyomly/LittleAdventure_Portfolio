@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 1029604822797929680}
   - component: {fileID: 4052244922408782595}
   m_Layer: 5
-  m_Name: EnemyHUD
-  m_TagString: Untagged
+  m_Name: HUD_Hp
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4947,7 +4947,7 @@ GameObject:
   - component: {fileID: 6402380306563839706}
   m_Layer: 0
   m_Name: Boom
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5020,7 +5020,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_player: {fileID: 0}
-  m_hudHp: {fileID: 0}
+  m_hudHp: {fileID: 4052244922408782595}
   m_monAniCtrl: {fileID: 0}
   m_state: 0
   m_idleDuration: 3
@@ -5214,7 +5214,7 @@ GameObject:
   - component: {fileID: 3166388755735727717}
   m_Layer: 0
   m_Name: Object001
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5347,7 +5347,7 @@ GameObject:
   - component: {fileID: 4897605502498693817}
   m_Layer: 0
   m_Name: smoke_fx01
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -10347,7 +10347,7 @@ GameObject:
   - component: {fileID: 8072052855454003278}
   m_Layer: 0
   m_Name: fire
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15256,7 +15256,7 @@ GameObject:
   - component: {fileID: 3018246581221000546}
   m_Layer: 5
   m_Name: Background
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -15331,7 +15331,7 @@ GameObject:
   - component: {fileID: 2355716360733102460}
   m_Layer: 0
   m_Name: spark
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -20366,7 +20366,7 @@ GameObject:
   - component: {fileID: 4945894370980582439}
   m_Layer: 0
   m_Name: smoke_02
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30160,7 +30160,7 @@ GameObject:
   - component: {fileID: 444430605912438522}
   m_Layer: 5
   m_Name: Fill Area
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30228,7 +30228,7 @@ GameObject:
   - component: {fileID: 1711328599609874955}
   m_Layer: 5
   m_Name: Fill Area
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30265,7 +30265,7 @@ GameObject:
   - component: {fileID: 7601010719427467712}
   m_Layer: 5
   m_Name: 'BackHUD_Slider '
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30584,7 +30584,7 @@ GameObject:
   - component: {fileID: 2046872756481781582}
   m_Layer: 5
   m_Name: Fill
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30690,7 +30690,7 @@ GameObject:
   - component: {fileID: 695087445949673432}
   m_Layer: 0
   m_Name: bomb
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30805,7 +30805,7 @@ GameObject:
   - component: {fileID: 2635458636250387060}
   m_Layer: 0
   m_Name: AttackArea
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30934,7 +30934,7 @@ GameObject:
   - component: {fileID: 1739348941994833282}
   m_Layer: 5
   m_Name: Fill
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -31041,7 +31041,7 @@ GameObject:
   - component: {fileID: 6246348968186490666}
   m_Layer: 0
   m_Name: smoke_03
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35948,7 +35948,7 @@ GameObject:
   - component: {fileID: 5876703842863340862}
   m_Layer: 0
   m_Name: Bip001
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -35981,7 +35981,7 @@ GameObject:
   - component: {fileID: 5307438490220857181}
   m_Layer: 0
   m_Name: HP_BarPos
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36110,7 +36110,7 @@ GameObject:
   - component: {fileID: 6098790824126214423}
   m_Layer: 0
   m_Name: 02_Monster_Bomb
-  m_TagString: Untagged
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36145,7 +36145,7 @@ GameObject:
   - component: {fileID: 946014359516001060}
   m_Layer: 5
   m_Name: Background
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36252,7 +36252,7 @@ GameObject:
   - component: {fileID: 367697860845419742}
   m_Layer: 5
   m_Name: HP_Text (TMP)
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -36481,7 +36481,7 @@ GameObject:
   - component: {fileID: 3766962357786879225}
   m_Layer: 5
   m_Name: FrontHUD_Slider
-  m_TagString: Player
+  m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

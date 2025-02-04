@@ -50,11 +50,6 @@ public class MonsterCtrl : MonoBehaviour
     
     #endregion [Constants and Fields]
 
-    #region [Public Properties]
- 
-
-
-    #endregion [Public Properties]
 
     #region [Animation Event Methods]
 
@@ -100,6 +95,7 @@ public class MonsterCtrl : MonoBehaviour
         {
             // Hp Down
             m_status.hp -= Mathf.RoundToInt(damage);
+            m_hudHp.gameObject.SetActive(true);
             m_hudHp.IsDamage(true, m_status.hp);
             SetState(AIState.Damage);
             m_monAniCtrl.Play(MonsterAniCtrl.Motion.Damage);
@@ -206,12 +202,11 @@ public class MonsterCtrl : MonoBehaviour
             }
         }
     }
-   
+
     void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, m_attackDist);
-
     }
 
     #endregion [Methods]
@@ -224,7 +219,6 @@ public class MonsterCtrl : MonoBehaviour
         m_navAgent = GetComponent<NavMeshAgent>();
         m_moveTween = GetComponent<MoveTween>();
         m_attackArea = GetComponentInChildren<Mon_AttackArea_UnitFind>();
-        m_hudHp = GetComponentInChildren<HUD_Hp>();
         InitMonster();
     }
 
