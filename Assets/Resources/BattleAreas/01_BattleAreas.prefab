@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.015686274, g: 0.47713685, b: 1, a: 1}
+  color: {r: 0.050980393, g: 1, b: 0.015686275, a: 1}
 --- !u!1 &3329633063531085046
 GameObject:
   m_ObjectHideFlags: 0
@@ -468,7 +468,7 @@ Transform:
   m_GameObject: {fileID: 3329633063531085046}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.344, y: 0.07, z: 0.057}
+  m_LocalPosition: {x: 0.344, y: 0.07, z: 0.367}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.015686274, g: 0.47713685, b: 1, a: 1}
+  color: {r: 0.052251793, g: 1, b: 0.015686274, a: 1}
 --- !u!1 &4571908646145658981
 GameObject:
   m_ObjectHideFlags: 0

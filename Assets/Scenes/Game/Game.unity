@@ -5688,7 +5688,7 @@ MonoBehaviour:
   - {fileID: 970754150}
   m_completePanel: {fileID: 1432720172}
   m_gameOverPanel: {fileID: 232144943}
-  m_stopGamePanel: {fileID: 1775583872}
+  m_pauseGamePanel: {fileID: 1775583872}
 --- !u!4 &1366028411
 Transform:
   m_ObjectHideFlags: 0
@@ -6995,7 +6995,7 @@ GameObject:
   - component: {fileID: 1775583875}
   - component: {fileID: 1775583874}
   m_Layer: 5
-  m_Name: Stop_Panel
+  m_Name: Pause_Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7612,7 +7612,7 @@ GameObject:
   - component: {fileID: 1865950196}
   - component: {fileID: 1865950198}
   m_Layer: 5
-  m_Name: Stop(Option)
+  m_Name: Pause
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7722,7 +7722,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1366028410}
         m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
-        m_MethodName: StopGame
+        m_MethodName: PauseGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

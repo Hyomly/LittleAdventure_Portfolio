@@ -35,10 +35,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     {
         StartCoroutine(CoTimer());
     }
-    public void StopTimer()
-    {
-        StopCoroutine(CoTimer());
-    }
+  
     public void SetTime()
     {
         m_curTime = m_time;
@@ -57,13 +54,17 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     public void IsDamaged()
     {
         m_isDamage= true;
-    }   
+    }
     public void CompletedGame()
     {
         StopAllCoroutines();
         IsOver(true);
         CheckDamage(m_isDamage);
         CheckPlayTime(m_curTime);
+        if (m_curStage == StageManager.Instance.CurActivateStage)
+        {
+            StageManager.Instance.CurActivateStage++;
+        }
         UIManager.Instance.ShowClearMission(m_mission1,m_mission2,m_mission3);
         UIManager.Instance.ShowCompletePanel();
     }
