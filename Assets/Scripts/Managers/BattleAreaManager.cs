@@ -2,23 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor.Playables;
 using UnityEngine;
+using static BattleAreaCtrl;
 using static MonsterManager;
 
 public class BattleAreaManager : SingletonMonobehaviour<BattleAreaManager>
 {
     int m_currentIdx;
+    [SerializeField]
     Transform[] m_spawnPos;
     public Transform Dummy_Spawn;
 
-    [SerializeField]
-    public List<Transform> m_spawnArea = new List<Transform>();
-
+   
     public void CurrentArea()
     {
         for (int i = 0; i < StageManager.Instance.m_battleArea.Count; i++)
         {
             var currentBattleArea = StageManager.Instance.m_battleArea[i];
-            if (currentBattleArea.UsedBattleArea && !currentBattleArea.ClearBettleArea)
+            if (currentBattleArea.AreaStatus == BattleAreaStatus.Using)
             {
                 m_currentIdx = i;
                 StartBattle();
@@ -34,7 +34,8 @@ public class BattleAreaManager : SingletonMonobehaviour<BattleAreaManager>
     }
     public void EndBattle()
     {
-        StageManager.Instance.m_battleArea[m_currentIdx].IsClear(true);
+        var area = StageManager.Instance.m_battleArea[m_currentIdx];
+        area.AreaStatus = BattleAreaStatus.Clear;
         RemoveBattleWall(m_currentIdx);
     }
 

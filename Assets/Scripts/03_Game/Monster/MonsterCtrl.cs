@@ -44,7 +44,7 @@ public class MonsterCtrl : MonoBehaviour
 
     [Space(10f)]
     [SerializeField,Header("[ 몬스터 능력치 ]")]
-    protected Status m_status;
+    public Status m_status;
     bool m_isDie = false;
 
     
@@ -66,7 +66,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         if (m_attackArea.IsPlayer)
         {
-            m_player.SetDamage(10f);            
+            m_player.SetDamage(m_status.attack);            
         }
     }
 
@@ -79,6 +79,7 @@ public class MonsterCtrl : MonoBehaviour
     }
     public void InitMonster()
     {
+      
         SetState(AIState.Idle);
         m_monAniCtrl.Play(MonsterAniCtrl.Motion.Idle);
         m_status.hp = m_status.hpMax;
@@ -125,6 +126,7 @@ public class MonsterCtrl : MonoBehaviour
         Vector3 deathPos = transform.position;
         deathPos.y += 0.3f;
         ItemManager.Instance.CreateCoin(deathPos);
+        gameObject.transform.position = Vector3.zero;
         MonsterManager.Instance.RemoveMonster(this);
         m_hudHp.HideBar();
         
@@ -184,7 +186,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         m_idleTime = m_idleDuration - duration;
     }
-    void SetIdle(float duration)
+    protected void SetIdle(float duration)
     {
         SetState(AIState.Idle);
         SetIdleDuration(duration);

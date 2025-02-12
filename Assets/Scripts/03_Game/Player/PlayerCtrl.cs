@@ -13,27 +13,40 @@ public class PlayerCtrl : MonoBehaviour
     SkillCtrl m_skillCtrl;
     [SerializeField]
     HUD_Hp m_hudHp;
-    AttackAreaUnitFind[] m_attackAreas;    
+    AttackAreaUnitFind[] m_attackAreas;
     [SerializeField]
     GameObject m_attackAreaObj;
     [Space(10f)]
     [SerializeField, Header("[ 주인공 능력치 ]")]
     Status m_status;
-   
-  
+
+
     bool m_isCombo = false;
     bool m_isUseSkill1 = true;
     bool m_isUseSkill2 = true;
     bool m_isUseDesh = true;
     int hash_Move;
-    float m_speed = 4f;
+    float m_speed;
     Vector3 m_dir;
 
-   
+
     #endregion [Constants and Fields]
 
     #region [Public  Properties]
     Motion GetMotion { get { return m_animCtrl.GetMotion; } }  //current Motion
+    public bool IsAttack
+    {
+        get
+        {
+            if (GetMotion == Motion.Attack1 ||
+                GetMotion == Motion.Attack2 ||
+                GetMotion == Motion.Attack3 ||
+                GetMotion == Motion.Skill1 ||
+                GetMotion == Motion.Skill2)
+                return true;
+            return false;
+        }
+    }
 
     #endregion [Public Properties]
 
@@ -45,89 +58,104 @@ public class PlayerCtrl : MonoBehaviour
     }
     void AnimEvent_Attack()
     {
-        var monList = m_attackAreas[0].MonList;
-        var objList = m_attackAreas[0].ObjList;
-        for (int i = 0; i < monList.Count; i++)
+        if (GetMotion != Motion.Damage)
         {
-            if (monList[i].gameObject.activeSelf)
+            var skill = SkillTable.Instance.GetSkillData(GetMotion);
+            var curArea = m_attackAreas[skill.attackArea];
+            var monList = curArea.MonList;
+            var objList = curArea.ObjList;
+            for (int i = 0; i < monList.Count; i++)
             {
                 var mon = monList[i].GetComponent<MonsterCtrl>();
                 if (mon != null)
                 {
-                    mon.SetDamage(10f);
+                    if (mon.transform.parent.gameObject.activeSelf)
+                    {
+                        if(mon.m_status.hp - skill.attack <= 0)
+                        {
+                            ClearAttackArea(mon);
+                        }
+                        mon.SetDamage(skill.attack);
+
+                    }
+
                 }
+
             }
-            else
-            {
-                m_attackAreas[0].ClearList(monList[i].gameObject); 
-            }            
-        }
-        for (int i = 0; i < objList.Count; i++)
-        {
-            if (objList[i].gameObject.activeSelf)
+            for (int i = 0; i < objList.Count; i++)
             {
                 var obj = objList[i].GetComponent<Box>();
                 if (obj != null)
                 {
-                    obj.SetDamage(5f);
+                    if (objList[i].gameObject.activeSelf)
+                    {
+                        obj.SetDamage(skill.attack);
+                    }
                 }
-            }
-            else
-            {
-                m_attackAreas[0].ClearList(objList[i].gameObject);
+
             }
         }
+
     }
 
     // Combo Attack Frame
     void AnimEvent_AttackFinished()
     {
         m_isCombo = false;
-        if(m_skillCtrl.CommandCount > 0)
+        if (m_skillCtrl.CommandCount > 0)
         {
             m_skillCtrl.GetCommand();
-            m_isCombo = true; 
-            if(m_skillCtrl.CommandCount > 0)
+            m_isCombo = true;
+            if (m_skillCtrl.CommandCount > 0)
             {
                 m_skillCtrl.ClearKeyBuffer();
                 m_isCombo = false;
             }
         }
-        if(m_isCombo)
+        if (m_isCombo)
         {
             m_animCtrl.Play(m_skillCtrl.GetCombo());
         }
         else
         {
             m_skillCtrl.ResetCombo();
-            m_animCtrl.Play(Motion.Idle);            
+            m_animCtrl.Play(Motion.Idle);
         }
-       
+
     }
     #endregion [Animation Event Methos]
 
     #region [Public Methods]
+
+    public void ClearAttackArea(MonsterCtrl mon)
+    {
+        for(int i = 0; i< m_attackAreas.Length; i++)
+        {
+            m_attackAreas[i].ClearList(mon.gameObject);
+        }
+    }
     public void AffectWind(Vector3 dir, float speed)
     {
         gameObject.transform.position += dir * speed * Time.deltaTime;
     }
     public void SetDamage(float damage)
     {
-        // Hp Down
-        m_status.hp -= Mathf.RoundToInt(damage);
-        m_hudHp.IsDamage(true, m_status.hp);
-        if( m_status.hp != m_status.hpMax )
+        if (!IsAttack)
         {
-            GameManager.Instance.IsDamaged();
-        }
-        
-        
-        m_animCtrl.Play(Motion.Damage);
+            // Hp Down
+            m_status.hp -= Mathf.RoundToInt(damage);
+            m_hudHp.IsDamage(true, m_status.hp);
+            if (m_status.hp != m_status.hpMax)
+            {
+                GameManager.Instance.IsDamaged();
+            }
+            m_animCtrl.Play(Motion.Damage);
 
-        // GameOver
-        if (m_status.hp <= 0)
-        {
-            GameManager.Instance.GameOver();
+            // GameOver
+            if (m_status.hp <= 0)
+            {
+                GameManager.Instance.GameOver();
+            }
         }
     }
     public void SetAttack()
@@ -178,9 +206,10 @@ public class PlayerCtrl : MonoBehaviour
 
     #region [Methods]
 
+    
     Vector3 GetPadAxis()
     {
-        Vector3 padDir = MovePad.Instance.PadDir;
+        Vector3 padDir = MovePad.Instance.PadDir; 
         Vector3 dir = Vector3.zero;
         if(padDir.x < 0f)   {  dir += Vector3.left * Mathf.Abs(padDir.x);  }
         if(padDir.x > 0f)   {  dir += Vector3.right * padDir.x;  }
@@ -260,10 +289,18 @@ public class PlayerCtrl : MonoBehaviour
 
     void Update()
     {
+        if(IsAttack)
+        {
+            m_speed = 0;
+        }
+        else
+        {
+            m_speed = 4;
+        }
         //Attack Combo
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            SetAttack();           
+            SetAttack(); 
         }
         //Desh
         if(Input.GetKeyDown(KeyCode.LeftShift))
@@ -287,12 +324,12 @@ public class PlayerCtrl : MonoBehaviour
         {
             m_dir = padDir;           
         }
-        if (m_dir != Vector3.zero)
+        if (m_dir != Vector3.zero && !IsAttack)
         {
             m_animCtrl.SetBool(hash_Move, true);
             transform.forward = m_dir;
         }        
-        else
+        else if(!IsAttack)
         {
             m_animCtrl.SetBool(hash_Move, false);
         }

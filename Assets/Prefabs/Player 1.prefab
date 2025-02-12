@@ -8022,13 +8022,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d3506ed3119268246845d9d4aad44be3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_hudHp: {fileID: 0}
+  m_hudHp: {fileID: 1252698492126448043}
   m_attackAreaObj: {fileID: 2292881967724412534}
   m_status:
+    num: 0
     hp: 100
     hpMax: 100
     attack: 10
-    defense: 0
 --- !u!114 &2201904353408481187
 MonoBehaviour:
   m_ObjectHideFlags: 0

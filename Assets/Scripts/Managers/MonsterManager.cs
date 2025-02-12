@@ -7,18 +7,19 @@ public class MonsterManager : SingletonMonobehaviour<MonsterManager>
     [SerializeField]
     PlayerCtrl m_player;    
     [SerializeField]
-    GameObject m_monsterPrefab;
+    GameObject[] m_monsterPrefabs;
     int m_removeCount = 0;
     int m_monsterCount = 0;
-   
-    GameObjectPool<MonsterCtrl> m_slimePool;
+
+    Dictionary<int, GameObjectPool<MonsterCtrl>> m_monsPool = new Dictionary<int, GameObjectPool<MonsterCtrl>>();
 
     public void CreateMonster(Transform[] spawnPos)
     {
         m_monsterCount = spawnPos.Length - 1;
-        for(int i = 0; i < spawnPos.Length-1; i++)
+        for (int i = 0; i < m_monsterCount; i++) 
         {
-            var mon = m_slimePool.Get();            
+            var spawnNum = int.Parse(spawnPos[i+1].name.Split('_')[0]);
+            var mon = m_monsPool[spawnNum].Get();   
             mon.transform.position = spawnPos[i + 1].transform.position;
             mon.transform.parent.gameObject.SetActive(true);
             mon.IsDie(false);
@@ -27,8 +28,8 @@ public class MonsterManager : SingletonMonobehaviour<MonsterManager>
     public void RemoveMonster(MonsterCtrl mon)
     {
         mon.InitMonster();
-        mon.transform.parent.gameObject.SetActive(false);        
-        m_slimePool.Set(mon);
+         mon.transform.parent.gameObject.SetActive(false);
+        m_monsPool[mon.m_status.num].Set(mon);
         m_removeCount++;
         if(m_removeCount == m_monsterCount)
         {
@@ -40,16 +41,26 @@ public class MonsterManager : SingletonMonobehaviour<MonsterManager>
     // Start is called before the first frame update
     protected override void OnStart()
     {
-        // Monster Pooling
-        m_slimePool = new GameObjectPool<MonsterCtrl>(5, () =>
+
+        m_monsterPrefabs = Resources.LoadAll<GameObject>("Monsters");
+        for(int i = 0; i< m_monsterPrefabs.Length; i++)
         {
-            var obj = Instantiate(m_monsterPrefab);
-            obj.SetActive(false);
-            obj.transform.SetParent(transform);
-            var mon = obj.GetComponentInChildren<MonsterCtrl>();
-            mon.InstancePlayer(m_player);
-            return mon;
-        });
+            var monNumber = int.Parse(m_monsterPrefabs[i].name.Split('_')[0]);
+            var monPrefab = m_monsterPrefabs[i];
+            var pool = new GameObjectPool<MonsterCtrl>(3, () =>
+            {
+                var obj = Instantiate(monPrefab);
+                obj.SetActive(false);
+                obj.transform.SetParent(transform);
+                var mon = obj.GetComponentInChildren<MonsterCtrl>();
+                mon.InstancePlayer(m_player);
+                mon.m_status = MonsterTable.Instance.GetStatusData(monNumber);
+                return mon;
+            });
+            m_monsPool.Add(monNumber, pool);    
+        }
+        
+        
     }
 
    

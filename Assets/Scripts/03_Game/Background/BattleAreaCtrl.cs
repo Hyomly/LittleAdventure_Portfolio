@@ -5,22 +5,36 @@ using static MonsterManager;
 
 public class BattleAreaCtrl : MonoBehaviour
 {
-    bool m_usedBettleArea = false;
-    bool m_clearBettleArea = false;
-
-    public bool UsedBattleArea => m_usedBettleArea;
-    public bool ClearBettleArea => m_clearBettleArea;
+    public enum BattleAreaStatus
+    {
+        None,
+        Using,
+        Clear
+    }
+    bool m_isSpwan = false;
+    public bool IsSpwan => IsSpwan;
+    public BattleAreaStatus AreaStatus { get; set; }
+   
+    
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Player"))
         {
-            m_usedBettleArea = true;
-            BattleAreaManager.Instance.CurrentArea();
+            if(!m_isSpwan)
+            {
+                AreaStatus = BattleAreaStatus.Using;
+                BattleAreaManager.Instance.CurrentArea();
+            }
+           
         }
     }
-   
-    public void IsClear(bool isClear)
+    private void OnTriggerExit(Collider other)
     {
-        m_clearBettleArea = isClear;
+        m_isSpwan = true;
+    }
+
+    private void Start()
+    {
+        AreaStatus = BattleAreaStatus.None;
     }
 }

@@ -1,0 +1,7 @@
+4
+5
+	Num	Monster	Hp	HpMax	Attack
+	1	Slime	50	50	10
+	2	Bomb	30	30	30
+	3	Cactus	50	50	10
+	

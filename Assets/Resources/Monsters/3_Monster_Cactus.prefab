@@ -932,7 +932,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2719938673252693691}
   m_Layer: 0
-  m_Name: 03_Monster_Cactus
+  m_Name: 3_Monster_Cactus
   m_TagString: Monster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -968,7 +968,7 @@ GameObject:
   - component: {fileID: 1398021367121009112}
   m_Layer: 0
   m_Name: AttackArea
-  m_TagString: Monster
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1479,7 +1479,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8422252345960208822}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1489,7 +1489,7 @@ Transform:
   - {fileID: 8915479970767698753}
   - {fileID: 2318504532633456594}
   m_Father: {fileID: 2719938673252693691}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!95 &8511607146914713542
 Animator:
   serializedVersion: 5
@@ -1544,10 +1544,10 @@ MonoBehaviour:
   m_idleTime: 0
   m_attackDist: 1
   m_status:
+    num: 0
     hp: 0
     hpMax: 0
     attack: 0
-    defense: 0
 --- !u!114 &2282041511166934017
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1651,7 +1651,7 @@ NavMeshAgent:
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
-  m_Height: 0.5
+  m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4

@@ -8,7 +8,7 @@ public class Monster_Bomb : MonsterCtrl
     {
         if (m_attackArea.IsPlayer)
         {
-            m_player.SetDamage(m_status.hpMax);
+            m_player.SetDamage(m_status.attack);
         }
 
     }
@@ -34,8 +34,10 @@ public class Monster_Bomb : MonsterCtrl
     }
     protected override void SetDie()
     {
+        gameObject.transform.position = Vector3.zero;
+        m_monAniCtrl.Play(MonsterAniCtrl.Motion.Idle);
         MonsterManager.Instance.RemoveMonster(this);
-        m_hudHp.HideBar();
+         m_hudHp.HideBar();
     }
     protected override void Start()
     {

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2326737063550459416}
   - component: {fileID: 2643371339907874652}
   m_Layer: 3
-  m_Name: SpawnPos (3)
+  m_Name: 1_SpawnPos (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.015686274, g: 0.47713685, b: 1, a: 1}
+  color: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &296667348444587543
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 474899358173143842}
   - component: {fileID: 7506845192879500105}
   m_Layer: 3
-  m_Name: SpawnPos (4)
+  m_Name: 1_SpawnPos (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -210,7 +210,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.015686274, g: 0.47713685, b: 1, a: 1}
+  color: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &1719102425509355434
 GameObject:
   m_ObjectHideFlags: 0
@@ -408,7 +408,7 @@ GameObject:
   - component: {fileID: 2971359749983314027}
   - component: {fileID: 5636268489787229301}
   m_Layer: 3
-  m_Name: SpawnPos (1)
+  m_Name: 2_SpawnPos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -441,7 +441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.050980393, g: 1, b: 0.015686275, a: 1}
+  color: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &3329633063531085046
 GameObject:
   m_ObjectHideFlags: 0
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 6187347507652842007}
   - component: {fileID: 3486946597582538818}
   m_Layer: 3
-  m_Name: SpawnPos (5)
+  m_Name: 1_SpawnPos (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -486,7 +486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.015686274, g: 0.47713685, b: 1, a: 1}
+  color: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &3530629805041845454
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,7 +620,7 @@ GameObject:
   - component: {fileID: 7849880261195235583}
   - component: {fileID: 920493282829507973}
   m_Layer: 3
-  m_Name: SpawnPos (1)
+  m_Name: 1_SpawnPos (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -653,7 +653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.015686274, g: 0.47713685, b: 1, a: 1}
+  color: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &3730614417340147890
 GameObject:
   m_ObjectHideFlags: 0
@@ -665,7 +665,7 @@ GameObject:
   - component: {fileID: 8518342797734024105}
   - component: {fileID: 7519189166941828148}
   m_Layer: 3
-  m_Name: SpawnPos
+  m_Name: 2_SpawnPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -680,7 +680,7 @@ Transform:
   m_GameObject: {fileID: 3730614417340147890}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.305, y: -0, z: 0.282}
+  m_LocalPosition: {x: -0.305, y: 0, z: 0.282}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -698,7 +698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.052251793, g: 1, b: 0.015686274, a: 1}
+  color: {r: 0, g: 1, b: 0, a: 1}
 --- !u!1 &4571908646145658981
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,9 +883,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 8518342797734024105}
   - {fileID: 7849880261195235583}
   - {fileID: 2497117388560791916}
+  - {fileID: 8518342797734024105}
   m_Father: {fileID: 4041367600713282145}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7688790019345127192
@@ -899,7 +899,7 @@ GameObject:
   - component: {fileID: 2497117388560791916}
   - component: {fileID: 1291831121905770237}
   m_Layer: 3
-  m_Name: SpawnPos (2)
+  m_Name: 1_SpawnPos (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -932,7 +932,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11387e3dd84e66c42bc84d0f8f0dfc52, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color: {r: 0.015686274, g: 0.47713685, b: 1, a: 1}
+  color: {r: 0, g: 1, b: 1, a: 1}
 --- !u!1 &8955448620503430196
 GameObject:
   m_ObjectHideFlags: 0
@@ -1084,9 +1084,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 2971359749983314027}
   - {fileID: 2326737063550459416}
   - {fileID: 474899358173143842}
   - {fileID: 6187347507652842007}
+  - {fileID: 2971359749983314027}
   m_Father: {fileID: 5576345217349721097}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

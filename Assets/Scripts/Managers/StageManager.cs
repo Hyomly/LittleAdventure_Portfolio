@@ -27,6 +27,7 @@ public class StageManager : SingletonDontDestroy<StageManager>
     }
     public void SettingMap(int stageIdx)
     {
+        m_battleArea.Clear();
         var stage = Instantiate(m_stages[stageIdx - 1]);
         stage.transform.position = Vector3.zero;
         m_navMesh.BuildNavMesh();

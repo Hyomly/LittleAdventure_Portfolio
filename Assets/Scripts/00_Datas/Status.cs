@@ -7,16 +7,16 @@ using UnityEngine;
 [Serializable]
 public struct Status 
 {
+    public int num;
     public int hp;
     public int hpMax;
     public int attack;
-    public int defense;
 
-    public Status(int hp, int hpMax, int attack, int defense)
+    public Status(int num,int hp, int hpMax, int attack)
     {
+        this.num = num;
         this.hp = hp;  
         this.hpMax = hpMax;
         this.attack = attack;
-        this.defense = defense;
     }
 }
