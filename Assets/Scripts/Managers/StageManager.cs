@@ -14,11 +14,10 @@ public class StageManager : SingletonDontDestroy<StageManager>
     List<GameObject> m_battleAreas = new List<GameObject>();
     [SerializeField]
     public List<BattleAreaCtrl> m_battleArea = new List<BattleAreaCtrl>();
-    public int m_selectStage;
-    int m_activeStageNum = 1;
-
+    
+    public int m_selectStage;    
     public List<GameObject> Stages => m_stages;
-    public int CurActivateStage { get { return m_activeStageNum; } set { m_activeStageNum = value; } }
+    
     
     public void SetStage(int stageIdx)
     {
@@ -44,6 +43,7 @@ public class StageManager : SingletonDontDestroy<StageManager>
     {
         m_battleArea.Add(battleArea);
     }
+
     void LoadStage()
     {
         var stages = Resources.LoadAll<GameObject>("Stages");
@@ -58,6 +58,6 @@ public class StageManager : SingletonDontDestroy<StageManager>
     protected override void OnAwake()
     {
         LoadStage();
-        m_navMesh = GetComponentInChildren<NavMeshSurface>();
+        m_navMesh = GetComponentInChildren<NavMeshSurface>();       
     }
 }

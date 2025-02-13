@@ -345,10 +345,54 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 200, y: 200}
+  m_CellSize: {x: 250, y: 280}
   m_Spacing: {x: 120, y: 80}
   m_Constraint: 1
   m_ConstraintCount: 4
+--- !u!1 &522395439
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 522395441}
+  - component: {fileID: 522395440}
+  m_Layer: 0
+  m_Name: PlayerGameData
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &522395440
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522395439}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b1bb568908e0872479c1d7a479c4e90c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &522395441
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522395439}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &803686584
 GameObject:
   m_ObjectHideFlags: 0
@@ -1117,7 +1161,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_buttonZone: {fileID: 100101561}
-  m_stagePrefab: {fileID: 7189915121045407762, guid: c2726b8eaca4fe14da330ae0f7b7b4c8, type: 3}
+  m_stagePrefab: {fileID: 4383114394839907627, guid: a2f0bd845d06e524e85972fdbf9d47d7, type: 3}
+  m_stars: []
 --- !u!1 &1938061705
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,3 +1397,4 @@ SceneRoots:
   - {fileID: 1424061890}
   - {fileID: 1550717798}
   - {fileID: 803686586}
+  - {fileID: 522395441}

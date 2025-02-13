@@ -61,12 +61,14 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         IsOver(true);
         CheckDamage(m_isDamage);
         CheckPlayTime(m_curTime);
-        if (m_curStage == StageManager.Instance.CurActivateStage)
+        if (m_curStage == PlayerGameData.Instance.CurActivateStage)
         {
-            StageManager.Instance.CurActivateStage++;
+            PlayerGameData.Instance.CurActivateStage++;
         }
         UIManager.Instance.ShowClearMission(m_mission1,m_mission2,m_mission3);
         UIManager.Instance.ShowCompletePanel();
+        ClearMissionCount();
+        PlayerGameData.Instance.MyCoin += m_stageCoins;
     }
     public void GameOver()
     {
@@ -75,6 +77,23 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     #endregion [Public Mathods]
 
     #region [Mathods]
+    void ClearMissionCount()
+    {
+        var clearCount = 0;
+        if (m_mission1 == true)
+        {
+            clearCount++;
+        }
+        if( m_mission2 == true)
+        {
+            clearCount++;
+        }
+        if(m_mission3 == true)
+        {
+            clearCount++;
+        }
+        PlayerGameData.Instance.ClearMissionUpdate(m_curStage, clearCount);
+    }
     void CheckDamage(bool isDamage)
     {
         if (!isDamage)
