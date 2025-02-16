@@ -12,14 +12,16 @@ public class PlayerCtrl : MonoBehaviour
     PlayerAniCtrl m_animCtrl;
     SkillCtrl m_skillCtrl;
     [SerializeField]
+    HUD_Ctrl m_hudCtrl;
     HUD_Hp m_hudHp;
+
     AttackAreaUnitFind[] m_attackAreas;
     [SerializeField]
     GameObject m_attackAreaObj;
+
     [Space(10f)]
     [SerializeField, Header("[ 주인공 능력치 ]")]
     Status m_status;
-
 
     bool m_isCombo = false;
     bool m_isUseSkill1 = true;
@@ -202,6 +204,7 @@ public class PlayerCtrl : MonoBehaviour
             
         }
     }
+   
     #endregion [Public Methods]
 
     #region [Methods]
@@ -282,7 +285,8 @@ public class PlayerCtrl : MonoBehaviour
     {
         m_animCtrl = GetComponent<PlayerAniCtrl>();
         m_skillCtrl = GetComponent<SkillCtrl>();       
-        m_attackAreas = m_attackAreaObj.GetComponentsInChildren<AttackAreaUnitFind>();        
+        m_attackAreas = m_attackAreaObj.GetComponentsInChildren<AttackAreaUnitFind>();
+        m_hudHp = m_hudCtrl.gameObject.GetComponent<HUD_Hp>();
         hash_Move = Animator.StringToHash("IsMove");
         m_hudHp.HpBarInit(m_status.hpMax);
     }

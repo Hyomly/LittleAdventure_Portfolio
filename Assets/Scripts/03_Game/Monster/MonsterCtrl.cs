@@ -1,12 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data.SqlTypes;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.AI;
-
-
 
 public class MonsterCtrl : MonoBehaviour
 {
@@ -23,18 +19,19 @@ public class MonsterCtrl : MonoBehaviour
     }
 
     [SerializeField]
-    protected PlayerCtrl m_player;
-    [SerializeField]
-    protected HUD_Hp m_hudHp;
+    protected PlayerCtrl m_player;    
     [SerializeField]
     protected MonsterAniCtrl m_monAniCtrl;
     NavMeshAgent m_navAgent;
     protected MoveTween m_moveTween;
     protected Mon_AttackArea_UnitFind m_attackArea;
+    protected HUD_Ctrl m_hudCtrl;
+    protected HUD_Hp m_hudHp;
+    public Transform HUD_Pos;
 
     [Space(10f)]
     [SerializeField, Header("[ Ai 상태 정보 ]")]
-    AIState m_state = AIState.Idle;    
+    protected AIState m_state = AIState.Idle;    
     [SerializeField]
     float m_idleDuration = 3f;
     [SerializeField]
@@ -77,13 +74,18 @@ public class MonsterCtrl : MonoBehaviour
     {
         m_player = player;
     }
+    public void SetHUD(HUD_Ctrl hud)
+    {
+        m_hudCtrl = hud;
+        m_hudHp = m_hudCtrl.gameObject.GetComponent<HUD_Hp>();
+        m_hudHp.HpBarInit(m_status.hpMax);
+    }
     public void InitMonster()
     {
       
         SetState(AIState.Idle);
         m_monAniCtrl.Play(MonsterAniCtrl.Motion.Idle);
-        m_status.hp = m_status.hpMax;
-        m_hudHp.HpBarInit(m_status.hpMax);
+        m_status.hp = m_status.hpMax;        
         
     }   
     public void IsDie(bool isDie)
@@ -96,7 +98,7 @@ public class MonsterCtrl : MonoBehaviour
         {
             // Hp Down
             m_status.hp -= Mathf.RoundToInt(damage);
-            m_hudHp.gameObject.SetActive(true);
+            m_hudCtrl.ShowBar();
             m_hudHp.IsDamage(true, m_status.hp);
             SetState(AIState.Damage);
             m_monAniCtrl.Play(MonsterAniCtrl.Motion.Damage);
@@ -127,9 +129,7 @@ public class MonsterCtrl : MonoBehaviour
         deathPos.y += 0.3f;
         ItemManager.Instance.CreateCoin(deathPos);
         gameObject.transform.position = Vector3.zero;
-        MonsterManager.Instance.RemoveMonster(this);
-        m_hudHp.HideBar();
-        
+        MonsterManager.Instance.RemoveMonster(this, m_hudCtrl);
     }
 
     bool CheckArea(Vector3 targetPos, float dist)
@@ -214,13 +214,14 @@ public class MonsterCtrl : MonoBehaviour
     #endregion [Methods]
 
     #region [Unity Methods]    
-
+   
     protected virtual void Start()
     {
         m_monAniCtrl = GetComponent<MonsterAniCtrl>();
         m_navAgent = GetComponent<NavMeshAgent>();
         m_moveTween = GetComponent<MoveTween>();
         m_attackArea = GetComponentInChildren<Mon_AttackArea_UnitFind>();
+       
         InitMonster();
     }
 
@@ -229,7 +230,4 @@ public class MonsterCtrl : MonoBehaviour
         BehaviorProcess();
     }
     #endregion [Unity Methods]
-
-
-
 }

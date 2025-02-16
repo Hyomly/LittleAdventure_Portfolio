@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SingletonDontDestroy<T>: MonoBehaviour where T : SingletonDontDestroy<T>
+public class SingletonDontDestroy<T> : MonoBehaviour where T : SingletonDontDestroy<T>
 {
     static T m_instance;
     public static T Instance { get { return m_instance; } }

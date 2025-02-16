@@ -16,13 +16,10 @@ public class TextBlink : MonoBehaviour
         if (m_isDecrease)
         {
             float alphaValue = 1f;
-
             while (alphaValue > 0.3f)
             {
                 alphaValue -= rate * Time.deltaTime;
-
                 m_startText.alpha = alphaValue;
-
                 if (alphaValue <= 0.3f)
                 {
                     m_isDecrease = false;
@@ -34,13 +31,10 @@ public class TextBlink : MonoBehaviour
         else
         {
             float alphaValue = 0.5f;
-
             while (alphaValue < 1f)
             {
                 alphaValue += rate * Time.deltaTime;
-
                 m_startText.alpha = alphaValue;
-
                 if (alphaValue >= 1f)
                 {
                     m_isDecrease = true;
@@ -48,7 +42,6 @@ public class TextBlink : MonoBehaviour
                 }
                 yield return null;
             }
-
         }
     }
 

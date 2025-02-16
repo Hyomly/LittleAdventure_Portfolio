@@ -49,38 +49,20 @@ public class HUD_Hp : MonoBehaviour
             m_backHpBar.value = m_frontHpBar.value;
         }
     }
-    public void HideBar()
-    {
-        gameObject.SetActive(false);
-    }
+  
     #endregion [Public Mathods]
 
     #region [Mathods]
     void BackHpBar_Update()
     {
         m_backHpBar.value = Mathf.Lerp(m_backHpBar.value, m_currentHp, Time.deltaTime * 5f);
-
     }
-    void ShowBar()
-    {
-        gameObject.SetActive(true);
-    }
+   
     #endregion[Mathods]
 
 
     #region[Unity Mathods]
-    private void Awake()
-    {
-        if (gameObject.CompareTag("Player"))
-        {
-            ShowBar();
-        }
-        else
-        {
-            HideBar();
-        }
-
-    }
+   
     void Update()
     {
         if (m_isDamage)

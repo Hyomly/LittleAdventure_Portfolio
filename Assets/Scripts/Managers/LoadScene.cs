@@ -27,6 +27,13 @@ public class LoadScene : SingletonDontDestroy<LoadScene>
     [SerializeField]
     SceneState m_loadState = SceneState.None;
 
+    public void LoadSceneAsync(SceneState state)
+    {
+        if (m_loadingState != null) return;
+        m_loadState = state;
+        m_loadingState = SceneManager.LoadSceneAsync((int)state);
+        ShowLoadingPage();
+    }
     public void ShowLoadingPage()
     {
         m_loadingImage.gameObject.SetActive(true);
@@ -37,13 +44,7 @@ public class LoadScene : SingletonDontDestroy<LoadScene>
         m_loadingImage.gameObject.SetActive(false);
         m_progressBar.gameObject.SetActive(false);
     }
-    public void LoadSceneAsync(SceneState state)
-    {
-        if (m_loadingState != null) return;
-        m_loadState = state;
-        m_loadingState = SceneManager.LoadSceneAsync((int)state);
-        ShowLoadingPage();
-    }
+    
 
     private void Start()
     {

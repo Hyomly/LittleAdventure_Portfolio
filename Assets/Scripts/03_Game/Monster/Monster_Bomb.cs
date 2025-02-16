@@ -14,7 +14,7 @@ public class Monster_Bomb : MonsterCtrl
     }
     public override void SetDamage(float damage)
     {
-        if (damage > 0)
+        if (damage > 0 && m_state != AIState.Attack)
         {
             // 맞은 후 밀리는 효과
             Vector3 from = transform.position; //현재 위치에서
@@ -36,8 +36,7 @@ public class Monster_Bomb : MonsterCtrl
     {
         gameObject.transform.position = Vector3.zero;
         m_monAniCtrl.Play(MonsterAniCtrl.Motion.Idle);
-        MonsterManager.Instance.RemoveMonster(this);
-         m_hudHp.HideBar();
+        MonsterManager.Instance.RemoveMonster(this, m_hudCtrl);
     }
     protected override void Start()
     {

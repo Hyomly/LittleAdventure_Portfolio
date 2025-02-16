@@ -8,6 +8,7 @@ public class GameManager : SingletonMonobehaviour<GameManager>
     #region [Constants and Fields]
     [SerializeField]
     GameObject m_player;
+    [SerializeField]
     HUD_Coin m_hudCoin;
     [SerializeField]
     float m_time = 180f;
@@ -147,7 +148,6 @@ public class GameManager : SingletonMonobehaviour<GameManager>
         SetTime();
         UIManager.Instance.ShowMission(m_curStage);
         UIManager.Instance.ShowStageInfo(m_curStage);
-        m_hudCoin = m_player.GetComponentInChildren<HUD_Coin>();
         m_hudCoin.gameObject.SetActive(false);
     }
     #endregion [Unity Mathods]
