@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class MissionTable : SingletonMonobehaviour<MissionTable>
 {
-
     public class Data
     {
         public int Stage;

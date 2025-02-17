@@ -11,6 +11,7 @@ public class MonsterAniCtrl : AnimationCtrl
         Walk,
         Attack,
         Damage,
+        Monitor,
         Max
     }
     [SerializeField]

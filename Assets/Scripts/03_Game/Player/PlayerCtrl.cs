@@ -64,40 +64,35 @@ public class PlayerCtrl : MonoBehaviour
         {
             var skill = SkillTable.Instance.GetSkillData(GetMotion);
             var curArea = m_attackAreas[skill.attackArea];
+            var effectData = EffectTable.Instance.GetEffectData(skill.effectId);
             var monList = curArea.MonList;
             var objList = curArea.ObjList;
             for (int i = 0; i < monList.Count; i++)
             {
                 var mon = monList[i].GetComponent<MonsterCtrl>();
-                if (mon != null)
+                if (mon != null && mon.transform.parent.gameObject.activeSelf)
                 {
-                    if (mon.transform.parent.gameObject.activeSelf)
+                    if (mon.m_status.hp - skill.attack <= 0)
                     {
-                        if(mon.m_status.hp - skill.attack <= 0)
-                        {
-                            ClearAttackArea(mon);
-                        }
-                        mon.SetDamage(skill.attack);
-
+                        ClearAttackArea(mon); //몬스터 처치시 공격범위에 몬스터 지우기
                     }
-
+                    var effect = EffectPool.Instance.Create(effectData.Prefab);
+                    effect.transform.position = mon.transform.position + Vector3.up * 0.5f;
+                    var dir = effect.transform.position - transform.position;
+                    dir.y = 0;
+                    effect.transform.rotation = Quaternion.FromToRotation(effect.transform.forward, dir.normalized);
+                    mon.SetDamage(skill.attack);
                 }
-
             }
             for (int i = 0; i < objList.Count; i++)
             {
                 var obj = objList[i].GetComponent<Box>();
-                if (obj != null)
+                if (obj != null && objList[i].gameObject.activeSelf)
                 {
-                    if (objList[i].gameObject.activeSelf)
-                    {
-                        obj.SetDamage(skill.attack);
-                    }
+                    obj.SetDamage(skill.attack);
                 }
-
             }
         }
-
     }
 
     // Combo Attack Frame

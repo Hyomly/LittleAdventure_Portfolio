@@ -28,21 +28,23 @@ public class MonsterCtrl : MonoBehaviour
     protected HUD_Ctrl m_hudCtrl;
     protected HUD_Hp m_hudHp;
     public Transform HUD_Pos;
+    protected bool m_isDie = false;
 
     [Space(10f)]
     [SerializeField, Header("[ Ai 상태 정보 ]")]
     protected AIState m_state = AIState.Idle;    
     [SerializeField]
-    float m_idleDuration = 3f;
+    protected float m_idleDuration = 3f;
     [SerializeField]
-    float m_idleTime;
+    protected float m_idleTime;
     [SerializeField]
-    float m_attackDist = 1f;
+    protected float m_attackDist = 1f;
+   
 
     [Space(10f)]
     [SerializeField,Header("[ 몬스터 능력치 ]")]
     public Status m_status;
-    bool m_isDie = false;
+    
 
     
     #endregion [Constants and Fields]
@@ -132,7 +134,7 @@ public class MonsterCtrl : MonoBehaviour
         MonsterManager.Instance.RemoveMonster(this, m_hudCtrl);
     }
 
-    bool CheckArea(Vector3 targetPos, float dist)
+    protected bool CheckArea(Vector3 targetPos, float dist)
     {
         var dir = targetPos - transform.position;
         if (dir.magnitude <= dist * dist)
@@ -147,7 +149,7 @@ public class MonsterCtrl : MonoBehaviour
         m_state = state;
     }
     
-    void BehaviorProcess()
+    protected virtual void BehaviorProcess()
     {
         switch (m_state)
         {
