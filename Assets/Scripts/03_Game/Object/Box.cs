@@ -16,9 +16,9 @@ public class Box : MonoBehaviour
         if( m_boxHp <= 0 )
         {
             gameObject.SetActive( false );
+            var effect = EffectPool.Instance.Create(EffectTable.Instance.GetEffectData(8).Prefab);
+            effect.transform.position = transform.position;
             ItemManager.Instance.CreateCoin(transform.position);
         }
     }
-   
-    
 }

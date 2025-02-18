@@ -39,7 +39,9 @@ public class MonsterCtrl : MonoBehaviour
     protected float m_idleTime;
     [SerializeField]
     protected float m_attackDist = 1f;
-   
+    [SerializeField]
+    protected float m_detectDist = 1f;
+
 
     [Space(10f)]
     [SerializeField,Header("[ 몬스터 능력치 ]")]
@@ -134,10 +136,11 @@ public class MonsterCtrl : MonoBehaviour
         MonsterManager.Instance.RemoveMonster(this, m_hudCtrl);
     }
 
-    protected bool CheckArea(Vector3 targetPos, float dist)
+    protected bool CheckArea(Vector3 targetPos, float dist)   //AttackArea안에 들어 왔나?
     {
         var dir = targetPos - transform.position;
-        if (dir.magnitude <= dist * dist)
+        var dis = dist * dist;
+        if (dir.sqrMagnitude <= dist * dist)
         {
             return true;
         }
@@ -167,7 +170,7 @@ public class MonsterCtrl : MonoBehaviour
                     SetState(AIState.Chase);
                     m_monAniCtrl.Play(MonsterAniCtrl.Motion.Walk);
                     m_navAgent.stoppingDistance = m_attackDist;
-                    StartCoroutine(CoChaseToTarget(m_player.transform, 30));
+                    StartCoroutine(CoChaseToTarget(m_player.transform, 20));
                     return;
                 }
                 m_idleTime += Time.deltaTime;
@@ -211,6 +214,7 @@ public class MonsterCtrl : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, m_attackDist);
+        Gizmos.DrawWireSphere(transform.position, m_detectDist);
     }
 
     #endregion [Methods]

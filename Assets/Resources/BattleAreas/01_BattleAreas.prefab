@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 1, a: 1}
+  size: 0.5
 --- !u!1 &296667348444587543
 GameObject:
   m_ObjectHideFlags: 0
@@ -211,6 +212,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 1, a: 1}
+  size: 0.5
 --- !u!1 &1719102425509355434
 GameObject:
   m_ObjectHideFlags: 0
@@ -442,6 +444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  size: 0.5
 --- !u!1 &3329633063531085046
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +490,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 1, a: 1}
+  size: 0.5
 --- !u!1 &3530629805041845454
 GameObject:
   m_ObjectHideFlags: 0
@@ -654,6 +658,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 1, a: 1}
+  size: 0.5
 --- !u!1 &3730614417340147890
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +704,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 0, a: 1}
+  size: 0.5
 --- !u!1 &4571908646145658981
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,6 +939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0, g: 1, b: 1, a: 1}
+  size: 0.5
 --- !u!1 &8955448620503430196
 GameObject:
   m_ObjectHideFlags: 0

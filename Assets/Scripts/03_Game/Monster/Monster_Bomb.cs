@@ -12,7 +12,7 @@ public class Monster_Bomb : MonsterCtrl
         }
 
     }
-    public override void SetDamage(float damage)
+    public override void SetDamage(float damage)              
     {
         if (damage > 0 && m_state != AIState.Attack)
         {
